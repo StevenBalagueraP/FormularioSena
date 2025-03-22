@@ -3,11 +3,12 @@
       <!-- Sidebar -->
       <aside class="w-64 bg-gray-100 shadow-xl p-4 flex flex-col">
         <!-- Logo -->
-        <div class="text-center mb-3">
-          <img src="/img/logo-sena.png" alt="Logo SENA" 
-            class="rounded-full mx-auto shadow-md border-2 border-gray-300"
-            style="width: 100px; box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);">
-        </div>
+        <div class="flex justify-center mb-3">
+  <img src="/img/logo-sena.png" alt="Logo SENA" 
+    class="rounded-full border border-gray-300 "
+    style=" height: 150px;width:150px ; box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5); border-radius: 50%;"
+  />
+</div>
   
         <hr class="border-gray-300 my-4" />
   
