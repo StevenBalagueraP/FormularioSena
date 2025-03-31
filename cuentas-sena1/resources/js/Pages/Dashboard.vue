@@ -30,7 +30,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
+        <div class="flex1-1 flex flex-col">
             <!-- Header -->
             <header class="bg-white shadow-md p-4 flex justify-between items-center">
                 <h1 class="text-xl font-semibold">Programa Reporte de Cuentas</h1>
@@ -96,10 +96,10 @@ const data = ref([
     { id: 2, name: 'Ejemplo 2' },
     { id: 3, name: 'Ejemplo 3' }
 ]);
-const logout = () => {
+function logout() {
     alert('Sesión cerrada');
     // Aquí puedes agregar la lógica real para cerrar sesión, como redirigir a la página de login
-};
+}
 </script>
 
 <style>
