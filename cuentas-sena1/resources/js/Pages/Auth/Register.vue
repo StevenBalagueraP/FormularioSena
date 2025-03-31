@@ -34,7 +34,7 @@ const submit = () => {
                 
                 <!-- Logo -->
                 <div class="text-center mb-3">
-                    <img src="/img/logo-sena.jpg" alt="Logo SENA" class="img-fluid rounded-circle mx-auto" style="width: 100px;">
+                    <img src="/img/logo-sena.png" alt="Logo SENA" class="img-fluid rounded-circle mx-auto" style="width: 100px;">
                 </div>
 
                 <h1 class="text-center mb-4 text-success text-[30px] font-bold">Registro</h1>
