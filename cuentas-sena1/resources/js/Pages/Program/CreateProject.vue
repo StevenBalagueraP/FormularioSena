@@ -7,6 +7,6 @@
 
 <script>
 export default {
-    name: 'CrearProyecto'
+    name: 'CreateProject'
 }
 </script>

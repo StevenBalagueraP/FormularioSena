@@ -15,13 +15,15 @@
             <nav class="flex-1">
                 <ul class="space-y-2">
                     <li v-for="item in menuItems" :key="item.name"
-                        class="flex items-center p-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-primary  hover:text-white transition duration-200">
-
-                        <component :is="item.icon" class="w-5 h-5 mr-2" />
-                        <span>{{ item.name }}</span>
+                        class="flex items-center p-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-primary hover:text-white transition duration-200">
+                        <button @click="item.route && navigateTo(item.route)" class="flex items-center w-full">
+                            <component :is="item.icon" class="w-5 h-5 mr-2" />
+                            <span>{{ item.name }}</span>
+                        </button>
                     </li>
                 </ul>
             </nav>
+
             <!-- Botón de Cerrar Sesión -->
             <button @click="logout"
                 class="flex items-center justify-center p-2 bg-red-500 text-white rounded-lg cursor-pointer hover:bg-red-700 transition duration-200">
@@ -72,23 +74,26 @@
 
 <script setup>
 import { ref } from 'vue';
-
 import { Home, User, File, FolderPlus, ClipboardList } from 'lucide-vue-next';
 
+function navigateTo(url) {
+    window.location.href = url;
+}
+
 const menuItems = ref([
-    { name: 'Inicio', icon: Home },
-    { name: 'Perfil', icon: User },
-    { name: 'Usuarios', icon: User },
-    { name: 'Crear Programa', icon: FolderPlus },
-    { name: 'Crear Proyecto', icon: FolderPlus },
-    { name: 'Registro Competencias y RA', icon: ClipboardList },
-    { name: 'Crear Ficha', icon: File },
-    { name: 'Asignación Titular Ficha', icon: User },
-    { name: 'Asignación Transversales', icon: User },
-    { name: 'Reporte Horas', icon: File },
-    { name: 'Crear Filtros', icon: FolderPlus },
-    { name: 'Reportes', icon: File },
-    { name: 'Cargue Masivo', icon: ClipboardList }
+    { name: 'Inicio', icon: Home, route: route('dashboard') },
+    { name: 'Perfil', icon: User }, // Sin ruta
+    { name: 'Usuarios', icon: User }, // Sin ruta
+    { name: 'Crear Programa', icon: FolderPlus, route: route('program.create') },
+    { name: 'Crear Proyecto', icon: FolderPlus, route: route('project.create') },
+    { name: 'Registro Competencias y RA', icon: ClipboardList, route: route('competencies.register') },
+    { name: 'Crear Ficha', icon: File, route: route('file.create') },
+    { name: 'Asignación Titular Ficha', icon: User }, // Sin ruta
+    { name: 'Asignación Transversales', icon: User }, // Sin ruta
+    { name: 'Reporte Horas', icon: File }, // Sin ruta
+    { name: 'Crear Filtros', icon: FolderPlus }, // Sin ruta
+    { name: 'Reportes', icon: File }, // Sin ruta
+    { name: 'Cargue Masivo', icon: ClipboardList } // Sin ruta
 ]);
 
 const data = ref([
@@ -96,6 +101,7 @@ const data = ref([
     { id: 2, name: 'Ejemplo 2' },
     { id: 3, name: 'Ejemplo 3' }
 ]);
+
 function logout() {
     alert('Sesión cerrada');
     // Aquí puedes agregar la lógica real para cerrar sesión, como redirigir a la página de login

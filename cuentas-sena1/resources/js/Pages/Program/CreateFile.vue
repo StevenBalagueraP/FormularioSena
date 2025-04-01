@@ -7,6 +7,6 @@
 
 <script>
 export default {
-    name: 'CrearFicha'
+    name: 'CreateFile'
 }
 </script>
