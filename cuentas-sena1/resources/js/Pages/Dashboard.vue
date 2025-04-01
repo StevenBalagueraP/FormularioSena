@@ -32,7 +32,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex1-1 flex flex-col">
+        <div class="flex-1 flex flex-col">
             <!-- Header -->
             <header class="bg-white shadow-md p-4 flex justify-between items-center">
                 <h1 class="text-xl font-semibold">Programa Reporte de Cuentas</h1>
