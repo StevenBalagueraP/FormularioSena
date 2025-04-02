@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// prueba de FullCalendar
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
