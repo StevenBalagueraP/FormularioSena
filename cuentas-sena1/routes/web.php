@@ -5,7 +5,7 @@ use App\Http\Controllers\ReporteHorasCotroller;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\ReporteHorasController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -26,6 +26,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/reportehoras', [ReporteHorasCotroller::class, 'index'])->name('reportehoras.index');
+Route::get('/reportehoras', [ReporteHorasController::class, 'index'])->name('reportehoras.index');
 
 require __DIR__.'/auth.php';
