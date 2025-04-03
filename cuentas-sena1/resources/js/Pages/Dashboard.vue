@@ -57,26 +57,7 @@
 
       <!-- CRUD Table -->
       <main class="p-6">
-        <h2 class="text-lg font-semibold mb-4">Gestión de Datos</h2>
-        <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
-          <thead class="bg-gray-300 text-gray-700">
-            <tr>
-              <th class="p-2">ID</th>
-              <th class="p-2">Nombre</th>
-              <th class="p-2">Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="item in data" :key="item.id" class="border-b">
-              <td class="p-2 text-center">{{ item.id }}</td>
-              <td class="p-2 text-center">{{ item.name }}</td>
-              <td class="p-2 text-center">
-                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700">Editar</button>
-                <button class="bg-red-500 text-white px-3 py-1 rounded ml-2 hover:bg-red-700">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <slot />
       </main>
     </div>
   </div>
