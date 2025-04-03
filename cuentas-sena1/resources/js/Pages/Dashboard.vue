@@ -1,59 +1,47 @@
 <template>
-  <div class="flex h-screen bg-gray-100">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-gray-100 shadow-xl p-4 flex flex-col">
-      <!-- Logo -->
-      <div class="flex justify-center mb-3">
-        <img src="/img/logo-sena.png" alt="Logo SENA" 
-          class="rounded-full border border-gray-300 "
-          style="height: 150px;width:150px; box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5); border-radius: 50%;"
-        />
-      </div>
-      <div class="flex flex-col items-center mb-4">
-        <h2 class="text-lg font-semibold text-gray-700">Bienvenido, usuario:</h2>
-          <!-- Nombre y Apellido del Usuario -->
-      <span class="text-gray text-lg font-bold">{{$page.props.auth.user.nombre}}</span>
-          <span class="text-gray text-lg font-bold">{{$page.props.auth.user.apellido}}</span>
-       
-      
+    <div class="flex h-screen bg-gray-100">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-100 shadow-xl p-4 flex flex-col">
+            <!-- Logo -->
+            <div class="text-center mb-3">
+                <img src="/img/logo-sena.png" alt="Logo SENA"
+                    class="rounded-full mx-auto shadow-md border-2 border-gray-300"
+                    style="width: 100px; box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);">
+            </div>
 
-      </div>
+            <hr class="border-gray-300 my-4" />
 
-      <hr class="border-gray-300 my-4" />
+            <!-- Menu -->
+            <nav class="flex-1">
+                <ul class="space-y-2">
+                    <li v-for="item in menuItems" :key="item.name"
+                        class="flex items-center p-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-primary hover:text-white transition duration-200">
+                        <button @click="item.route && navigateTo(item.route)" class="flex items-center w-full">
+                            <component :is="item.icon" class="w-5 h-5 mr-2" />
+                            <span>{{ item.name }}</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
 
-      <!-- Menu -->
-      <nav class="flex-1">
-        <ul class="space-y-2">
-          <li v-for="item in menuItems" :key="item.name" 
-            class="flex items-center p-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-primary hover:text-white transition duration-200">
-            <component :is="item.icon" class="w-5 h-5 mr-2" />
-            <span>{{ item.name }}</span>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+            <!-- Botón de Cerrar Sesión -->
+            <button @click="logout"
+                class="flex items-center justify-center p-2 bg-red-500 text-white rounded-lg cursor-pointer hover:bg-red-700 transition duration-200">
+                <span class="mr-2">Cerrar Sesión</span> 🔴
+            </button>
+        </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
-      <!-- Header -->
-      <header class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-xl font-semibold">Programa Reporte de Cuentas</h1>
-        <div class="flex items-center space-x-4">
-          <button class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">🔔</button>
-          <button class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">❓</button>
-       
-          <!-- Icono de Cerrar Sesión -->
-          <div class="flex justify-end p-4 bg-primary text-white rounded-s">
-            <button 
-      @click="logout"
-      class="text-white text-xs hover:text-yellow-400 transition"
-    >
-      Cerrar sesión
-    </button>
-
-  </div>
-        </div>
-      </header>
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <h1 class="text-xl font-semibold">Programa Reporte de Cuentas</h1>
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">🔔</button>
+                    <button class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">❓</button>
+                    <span class="font-medium">Usuario</span>
+                </div>
+            </header>
 
       <!-- CRUD Table -->
       <main class="p-6">
@@ -67,41 +55,42 @@
 import { ref } from 'vue';
 import { Home, User, File, FolderPlus, ClipboardList } from 'lucide-vue-next';
 
-import { router } from '@inertiajs/vue3'
-
-const logout = () => {
-  router.post(route('logout'))
+function navigateTo(url) {
+    window.location.href = url;
 }
+
 const menuItems = ref([
-  
-  { name: 'Inicio', icon: Home },
-  { name: 'Perfil', icon: User },
-  { name: 'Usuarios', icon: User },
-  { name: 'Crear Programa', icon: FolderPlus },
-  { name: 'Crear Proyecto', icon: FolderPlus },
-  { name: 'Registro Competencias y RA', icon: ClipboardList },
-  { name: 'Crear Ficha', icon: File },
-  { name: 'Asignación Titular Ficha', icon: User },
-  { name: 'Asignación Transversales', icon: User },
-  { name: 'Reporte Horas', icon: File },
-  { name: 'Crear Filtros', icon: FolderPlus },
-  { name: 'Reportes', icon: File },
-  { name: 'Cargue Masivo', icon: ClipboardList }
+    { name: 'Inicio', icon: Home, route: route('dashboard') },
+    { name: 'Perfil', icon: User }, // Sin ruta
+    { name: 'Usuarios', icon: User }, // Sin ruta
+    { name: 'Crear Programa', icon: FolderPlus, route: route('program.create') },
+    { name: 'Crear Proyecto', icon: FolderPlus, route: route('project.create') },
+    { name: 'Registro Competencias y RA', icon: ClipboardList, route: route('competencies.register') },
+    { name: 'Crear Ficha', icon: File, route: route('file.create') },
+    { name: 'Asignación Titular Ficha', icon: User }, // Sin ruta
+    { name: 'Asignación Transversales', icon: User }, // Sin ruta
+    { name: 'Reporte Horas', icon: File }, // Sin ruta
+    { name: 'Crear Filtros', icon: FolderPlus }, // Sin ruta
+    { name: 'Reportes', icon: File }, // Sin ruta
+    { name: 'Cargue Masivo', icon: ClipboardList } // Sin ruta
 ]);
-
-
 
 const data = ref([
-  { id: 1, name: 'Ejemplo 1' },
-  { id: 2, name: 'Ejemplo 2' },
-  { id: 3, name: 'Ejemplo 3' }
+    { id: 1, name: 'Ejemplo 1' },
+    { id: 2, name: 'Ejemplo 2' },
+    { id: 3, name: 'Ejemplo 3' }
 ]);
 
-
+function logout() {
+    alert('Sesión cerrada');
+    // Aquí puedes agregar la lógica real para cerrar sesión, como redirigir a la página de login
+}
 </script>
 
 <style>
 body {
-  font-family: 'Arial', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
+
+/* Si usas Tailwind, asegúrate de tener bg-primary en tu configuración de colores */
 </style>
