@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Notifications\CustomVerifyEmail;
 
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Muestra la vista de registro.
      */
     public function create(): Response
     {
@@ -24,7 +25,7 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * Procesa la solicitud de registro.
      *
      * @throws \Illuminate\Validation\ValidationException
      *la que procesa lo que el formualrio envìa
@@ -46,7 +47,7 @@ class RegisteredUserController extends Controller
             'usuario' => $request->usuario,
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
-            'email' => $request->email,
+            'email' => strtolower($request->email),
             'telefono' => $request->telefono,
             'password' => Hash::make($request->password),// encriptar la contraseña 
         
@@ -54,8 +55,16 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        // No hacer login automático si requieres verificación
+        if (config('auth.must_verify_email')) {
+            return redirect()->route('verification.notice');
+        }
+
+        $user->notify(new \App\Notifications\CustomVerifyEmail);
+
+
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('verification.notice');
     }
 }
