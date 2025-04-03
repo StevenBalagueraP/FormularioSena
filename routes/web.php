@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.availability');;
-
+Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.disponibilidad');;
+Route::get('/prueba', [ReportesController::class, 'index'])->name('reportes.asignacion');;
 
 require __DIR__.'/auth.php';
