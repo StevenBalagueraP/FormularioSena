@@ -8,7 +8,7 @@ class ReportesController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Reportes/Availability', [
+        return Inertia::render('Reportes/Disponibilidad', [
             'status' => session('status'),
             'events' => [
                 ['title' => 'Disponible', 'start' => '2025-04-01', 'color' => 'green'],
