@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.disponibilidad');;
-Route::get('/prueba', [ReportesController::class, 'index'])->name('reportes.asignacion');;
+Route::get('/asignacion', function () {
+    return Inertia::render('Reportes/AsignacionTransversal');
+})->name('asignacion');
+Route::get('/horasmensuales', function () {
+    return Inertia::render('Reportes/HorasMensuales');
+})->name('horasmensuales');
 
 require __DIR__.'/auth.php';
