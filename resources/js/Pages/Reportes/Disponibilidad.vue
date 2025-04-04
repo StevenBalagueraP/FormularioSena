@@ -22,6 +22,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import Vista from '../../Layouts/Vista.vue';
 
 export default {
+  name: "Disponibilidad",
   components: { FullCalendar },
   data() {
     return {

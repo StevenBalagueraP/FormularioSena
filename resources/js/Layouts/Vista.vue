@@ -4,6 +4,7 @@
         <v-btn to="/disponibilidad">Disponibilidad</v-btn>
         <v-btn to="/assign">Asignar Materias</v-btn>
         <v-btn to="/history">Histórico</v-btn>
+        <v-btn :to="{ name: 'asignar' }">Asignar Materias</v-btn>
       </v-app-bar>
   
       <v-main>
