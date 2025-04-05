@@ -2,11 +2,11 @@
 
     <Dashboard>
         <div class=" justify-evenly space-x-8">
-        <Create />
+        <HelpCreate />
         </div>
 
 <button class="bg-primary text-white">
-    hola
+  
 </button>
 
         <DataTable :data="helps" :columns="columns" :customcomponent='HelpEdit'/>
@@ -19,7 +19,7 @@ import DataTable from '@/ComponentesNew/DataTableNew.vue';
 // import Create from './Create.vue';
 import { ref } from 'vue';
 import HelpEdit from './Edit.vue';
-
+import HelpCreate from './Create.vue';
 
 
 
