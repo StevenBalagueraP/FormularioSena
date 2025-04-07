@@ -265,26 +265,33 @@ input {
   border-collapse: collapse;
 }
 
-.uniform-table td {
-  max-width: 200px;
-  max-height: 200px;
-  overflow: auto;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  padding: 2;
-  font-size: 14px;
-}
-
-.uniform-table th,
-.uniform-table td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 8px;
-}
-
 .uniform-table th {
   background-color: #f4f4f4f3;
-  font: bold;
+  font-weight: bold;
+  padding: 12px 8px;
+  /* Aumentamos el padding vertical */
+  white-space: normal;
+  /* Permitimos que el texto se envuelva */
+  word-wrap: break-word;
+  /* Forzamos el quiebre de palabras largas */
+  min-width: 100px;
+  /* Ancho mínimo para las columnas */
+  vertical-align: top;
+  /* Alineamos el contenido arriba */
+  line-height: 1.2;
+  /* Ajustamos el espaciado entre líneas */
+}
+
+.uniform-table td {
+  max-width: 200px;
+  padding: 8px;
+  font-size: 14px;
+  white-space: normal;
+  /* Permitimos que el texto se envuelva */
+  word-wrap: break-word;
+  /* Forzamos el quiebre de palabras largas */
+  vertical-align: top;
+  /* Alineamos el contenido arriba */
 }
 
 .uniform-table .cell-content {
