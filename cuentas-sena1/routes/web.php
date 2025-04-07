@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
+use App\Http\Controllers\FileController;
+
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +22,11 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/help', [HelpController::class, 'index'])->name('help.index')->middleware(['auth', 'verified']);
+
 //Route::get('/help/create', [HelpController::class, 'create'])->name('help.create')->middleware(['auth', 'verified']);
+
+Route::get('/file', [FileController::class, 'index'])->name('file.index')->middleware(['auth', 'verified']);
+Route::resource('files', FileController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
