@@ -30,7 +30,7 @@
             <span>{{ item.name }}</span>
           </li>
         </ul>
-      </nav>
+      </nav> 
     </aside>
 
     <!-- Main Content -->

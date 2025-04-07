@@ -10,7 +10,7 @@
 </button>
 
         <DataTable :data="helps" :columns="columns" :customcomponent='HelpEdit'/>
-    </Dashboard>
+    </Dashboard> 
     
 </template>
 <script setup>
