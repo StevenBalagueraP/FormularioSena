@@ -1,4 +1,4 @@
-  <template>
+<template>
     <div class=" flex relative max-xl mx-auto justify-center my-10">
       <!-- Input de búsqueda -->
       <div class="relative w-full">
@@ -77,9 +77,17 @@
                 </td>
               </template>
             </template>
-            <td>
+            <!-- Botón de Editar fila -->
+            <td class="py-2 px-4 border-b h-full flex items-center justify-center  space-x-2">
+              
+                <!-- Tooltip que aparece al pasar el mouse sobre el icono -->
+                <span
+                  class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-Black rounded opacity-0 group-hover:opacity-100 transition">
+                  Delete row
+                </span>
               <!--</div>-->
-              <customcomponent style="min"></customcomponent>
+              <customcomponent style="min"
+              :edit="rowData" ></customcomponent>
             </td>
           </tr>
         </tbody>
