@@ -30,7 +30,7 @@
   <!--Tabla 
     <div class="relative flex max-w-auto mx-auto justify-center">-->
   <div class="overflow-x-auto w-full">
-    <table class="table-fixed uniform-table w-full h-full">
+    <table class="min-w-full table-auto uniform-table">
       <thead>
         <tr class="h-full">
           <th class="fa fa-angle-double-down text-center" v-for="column in columns"
@@ -52,7 +52,7 @@
         <tr v-for="rowData in filteredData" :key="rowData.id">
           <template v-for="column in columns">
             <template v-if="!column.col_array">
-              <td>
+              <td class="align-middle">
                 <template v-if="rowData.editing">
                   <input v-if="column.datasubcol" v-model="rowData[column.datacol][column.datasubcol]" type="text"
                     class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm" />
@@ -77,16 +77,28 @@
               </td>
             </template>
           </template>
-          <!-- Botón de Editar fila -->
-          <td class="py-2 px-4 border-b h-full flex items-center justify-center  space-x-2">
-
-            <!-- Tooltip que aparece al pasar el mouse sobre el icono -->
-            <span
-              class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-Black rounded opacity-0 group-hover:opacity-100 transition">
-              Delete row
-            </span>
-            <!--</div>-->
-            <customcomponent style="min" :edit="rowData"></customcomponent>
+          <!-- Botones de acción -->
+          <td class="py-2 px-4 border-b min-w-[200px] align-middle">
+            <div class="flex flex-wrap justify-center gap-2">
+              <button 
+                  @click="customcomponent.actions.edit(rowData)"
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded inline-flex items-center text-sm whitespace-nowrap"
+              >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                  </svg>
+                  Editar
+              </button>
+              <button 
+                  @click="customcomponent.actions.delete(rowData)"
+                  class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded inline-flex items-center text-sm whitespace-nowrap"
+              >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                  Eliminar
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -262,6 +274,7 @@ input {
   width: 100%;
   height: 100%;
   border-collapse: collapse;
+  min-width: 1200px; /* Ancho mínimo para asegurar que todos los datos sean visibles */
 }
 
 .uniform-table th {
@@ -289,8 +302,8 @@ input {
   /* Permitimos que el texto se envuelva */
   word-wrap: break-word;
   /* Forzamos el quiebre de palabras largas */
-  vertical-align: top;
-  /* Alineamos el contenido arriba */
+  vertical-align: middle; /* Cambiado a middle */
+  height: 100%;
 }
 
 .uniform-table .cell-content {
@@ -377,5 +390,16 @@ input {
   display: flex;
   justify-content: center;
   gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .uniform-table td {
+    padding: 4px;
+  }
+  
+  button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
 }
 </style>
