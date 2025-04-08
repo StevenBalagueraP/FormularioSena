@@ -20,8 +20,28 @@
               clearable
               prepend-icon="mdi-calendar"
             />
+            <v-select
+              v-model="ordenPor"
+              :items="opcionesOrden"
+              label="Ordenar por"
+              item-title="text"
+              item-value="value"
+              prepend-icon="mdi-sort"
+              class="mt-2 md:mt-0"
+            />
+
+            <v-btn color="secondary" @click="toggleOrdenamiento" class="mt-2 md:mt-0">
+              Orden {{ ordenAscendente ? '▲' : '▼' }}
+            </v-btn>
+            <v-btn
+            color="primary"
+            @click="limpiarFiltros"
+            class="mt-2 md:mt-0"
+          >
+            Borrar filtros
+          </v-btn>
           </div>
-  
+          
           <!-- Tabla -->
           <v-data-table
             :headers="headers"
@@ -57,8 +77,10 @@
   </template>
   
   <script>
+  import AppLayout from '@/Layouts/AppLayout.vue'
   export default {
-    name: "HorasMensuales",
+    name: 'reportes.horasmensuales',
+    layout: AppLayout,
     data() {
       return {
         filtroDocente: "",
@@ -71,19 +93,53 @@
           { text: "Diferencia", value: "diferencia" },
         ],
         horasMensuales: [
+          { docente: "Juan Pérez", mes: "Abril", totalHoras: 120 },
+          { docente: "Ana Gómez", mes: "Abril", totalHoras: 170 },
+          { docente: "Carlos Ruiz", mes: "Abril", totalHoras: 160 },
+          { docente: "Ana Gómez", mes: "Febrero", totalHoras: 155 },
           { docente: "Juan Pérez", mes: "Marzo", totalHoras: 120 },
           { docente: "Ana Gómez", mes: "Marzo", totalHoras: 170 },
           { docente: "Carlos Ruiz", mes: "Marzo", totalHoras: 160 },
           { docente: "Ana Gómez", mes: "Febrero", totalHoras: 155 },
+          { docente: "Juan Pérez", mes: "Marzo", totalHoras: 120 },
+          { docente: "Ana Gómez", mes: "Marzo", totalHoras: 170 },
+          { docente: "Carlos Ruiz", mes: "Marzo", totalHoras: 160 },
+          { docente: "Ana Gómez", mes: "Abril", totalHoras: 155 },
+          { docente: "Juan Pérez", mes: "Abril", totalHoras: 120 },
+          { docente: "Ana Gómez", mes: "Abril", totalHoras: 170 },
+          { docente: "Carlos Ruiz", mes: "Marzo", totalHoras: 160 },
+          { docente: "Ana Gómez", mes: "Febrero", totalHoras: 155 },
         ],
+        ordenAscendente: true,
+        ordenPor: "mes",
+        opcionesOrden: [
+          { text: "Docente", value: "docente" },
+          { text: "Mes", value: "mes" },
+          { text: "Total Horas", value: "totalHoras" },
+],
       };
     },
     computed: {
       filtrados() {
-        return this.horasMensuales.filter((item) => {
+        let filtrados = this.horasMensuales.filter((item) => {
           const docenteCoincide = item.docente.toLowerCase().includes(this.filtroDocente.toLowerCase());
           const mesCoincide = this.filtroMes ? item.mes === this.filtroMes : true;
           return docenteCoincide && mesCoincide;
+        });
+
+        return filtrados.sort((a, b) => {
+          let campoA = a[this.ordenPor];
+          let campoB = b[this.ordenPor];
+
+          // Normalizar strings para comparación
+          if (typeof campoA === 'string') campoA = campoA.toLowerCase();
+          if (typeof campoB === 'string') campoB = campoB.toLowerCase();
+
+          if (this.ordenAscendente) {
+            return campoA > campoB ? 1 : campoA < campoB ? -1 : 0;
+          } else {
+            return campoA < campoB ? 1 : campoA > campoB ? -1 : 0;
+          }
         });
       },
     },
@@ -93,6 +149,13 @@
         const signo = diff > 0 ? "+" : diff < 0 ? "" : "";
         const emoji = diff > 0 ? "✅" : diff < 0 ? "❌" : "✔️";
         return `${signo}${diff} hrs ${emoji}`;
+      },
+      toggleOrdenamiento() {
+        this.ordenAscendente = !this.ordenAscendente;
+      },
+      limpiarFiltros() {
+        this.filtroDocente = "";
+        this.filtroMes = "";
       },
     },
   };

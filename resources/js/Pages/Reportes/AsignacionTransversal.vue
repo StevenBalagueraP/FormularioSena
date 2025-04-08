@@ -5,7 +5,6 @@
           <div :class="{ 'dark bg-gray-900 text-white': isDarkMode }" class="p-4 min-h-screen transition-colors">
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-lg font-semibold">Asignación de Materias a Instructores</h2>
-              <v-btn :to="{ name: 'Disponibilidad' }">Disponibilidad</v-btn>
               <button @click="toggleDarkMode" class="px-4 py-2 border rounded-lg shadow">
                 {{ isDarkMode ? 'Modo Claro' : 'Modo Oscuro' }}
               </button>
@@ -56,8 +55,11 @@
   </template>
   
   <script>
+  
+  import AppLayout from '@/Layouts/AppLayout.vue'
   export default {
-    name: "AsignacionTransversal",
+    name: 'reportes.asignacion',
+    layout: AppLayout,
     data() {
       return {
         isDarkMode: localStorage.getItem("darkMode") === "true",

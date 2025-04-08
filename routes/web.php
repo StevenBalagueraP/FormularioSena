@@ -25,12 +25,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.disponibilidad');;
+Route::get('/reportes', function () {
+    return Inertia::render('Reportes/Disponibilidad');
+})->name('reportes.disponibilidad');
 Route::get('/asignacion', function () {
     return Inertia::render('Reportes/AsignacionTransversal');
-})->name('asignacion');
+})->name('reportes.asignacion');
 Route::get('/horasmensuales', function () {
     return Inertia::render('Reportes/HorasMensuales');
-})->name('horasmensuales');
+})->name('reportes.horasmensuales');
+
 
 require __DIR__.'/auth.php';
