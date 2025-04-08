@@ -1,25 +1,23 @@
 <template>
   <div>
-    <button @click="showModal = true" class="bg-green-600 text-white px-4 py-2 rounded">
+         <button
+            @click="setShow"
+            class="rounded bg-green-600 px-4 py-2 text-white"
+        >
       Crear Ficha
-    </button>
-
-    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      
+    </button> 
+<Teleport to="body">
+ <Modal :show="show" max-width="4xl" @close="close">
+    <div v-if="show" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div class="bg-white rounded-lg p-6 w-full max-w-2xl">
         <ApplicationLogo class="mx-auto h-20 w-16"/>
-      
         <h2 class="text-xl font-semibold mb-4 text-center">Ficha de Formación</h2>
-       
         <form @submit.prevent="submit">
-         
           <div class="grid grid-cols-2 gap-4">
             <div>
-              
               <label>Número de ficha</label>
               <input v-model="form.numero_ficha" class="input" />
             </div>
-             
             <div>
               <label>Instructor líder</label>
               <input v-model="form.instructor_lider" class="input" />
@@ -58,7 +56,7 @@
           </div>
           
           <div class="mt-6 flex justify-end space-x-2">
-            <button type="button" @click="showModal = false" class="px-4 py-2 bg-gray-400 rounded text-white">
+            <button type="button" @click="show = false" class="px-4 py-2 bg-gray-400 rounded text-white">
               Cancelar
             </button>
             <button type="submit" class="px-4 py-2 bg-blue-600 rounded text-white">
@@ -68,17 +66,25 @@
         </form>
       </div>
     </div>
+ </Modal>
+
+</Teleport>
   </div>
+
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import { useForm } from '@inertiajs/vue3';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 
+const show = ref(false);
 
-const showModal = ref(false);
+const setShow = () => (show.value = true);
+
+const close = () => (show.value = false);
+
 
 const form = useForm({
   numero_ficha: '',

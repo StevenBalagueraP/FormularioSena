@@ -1,28 +1,22 @@
 <template>
     <Dashboard>
       <div>
-        <Create />
+        <CreateFile />
       </div>
   
-      <DataTable
-        :data="files" 
-        :columns="columns" 
-        :customcomponent="FileEdit"
-      
-      />
+      <DataTable :data="files" :columns="columns" :customcomponent="FileEdit"/>
     </Dashboard>
   </template>
   
   <script setup>
-  import Dashboard from '@/Pages/Dashboard.vue'
-  import DataTable from '@/ComponentesNew/DataTableNew.vue'
-  import Create from './Create.vue'
-   import { ref } from 'vue'
-  import FileEdit from './Edit.vue'
+  import Dashboard from '@/Pages/Dashboard.vue';
+  import DataTable from '@/ComponentesNew/DataTableNew.vue';
+   import { ref } from 'vue';
+  import FileEdit from './Edit.vue';
+  import CreateFile from './Create.vue';
  
-  const show = ref(false);
-const setShow = () => show.value = true;
-const close = () => show.value = false;
+// Removed unused setShow function
+// Removed unused close function
 
   
   // Columnas de la tabla (alias: lo que se muestra en la cabecera, datacol: propiedad del objeto)
@@ -37,7 +31,7 @@ const close = () => show.value = false;
      ])
   
   // Recibe los datos desde el controlador de Laravel
-  const props = defineProps({
+  defineProps({
     files: Array
   })
   </script>

@@ -5,20 +5,17 @@
         </button>
     </div>
     <Teleport to="body">
-
-   
     <!-- <Modal :show="show" max-width="4xl" @close="close"> -->
     <div>
-   
-        <TextInput  
-            id="nombre" 
-            type="text" 
-            class="mt-1 block w-full" 
-            placeholder="Nombre" 
-            v-model="form.nombre" 
-            required 
+        <TextInput
+            id="nombre"
+            type="text"
+            class="mt-1 block w-full"
+            placeholder="Nombre"
+            v-model="form.nombre"
+            required
             autofocus
-            autocomplete="nombre" 
+            autocomplete="nombre"
         />
         <InputError :message="form.errors.nombre" />
     </div>
@@ -31,7 +28,6 @@
 import { useForm } from '@inertiajs/vue3';  
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
-import Modal from 'vendor/laravel/breeze/stubs/inertia-react/resources/js/Components/Modal';
 import Modal from '@/Components/Modal.vue';
 
 
