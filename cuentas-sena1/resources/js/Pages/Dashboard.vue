@@ -25,6 +25,7 @@
       <nav class="flex-1">
         <ul class="space-y-2">
           <li v-for="item in menuItems" :key="item.name" 
+            @click="item.action && item.action()"
             class="flex items-center p-2 bg-gray-200 rounded-lg cursor-pointer hover:bg-primary hover:text-white transition duration-200">
             <component :is="item.icon" class="w-5 h-5 mr-2" />
             <span>{{ item.name }}</span>
@@ -77,7 +78,7 @@ const menuItems = ref([
   { name: 'Inicio', icon: Home },
   { name: 'Perfil', icon: User },
   { name: 'Usuarios', icon: User },
-  { name: 'Crear Programa', icon: FolderPlus },
+  { name: 'Crear Programa', icon: FolderPlus, action: () => router.get(route('program.create')) },
   { name: 'Crear Proyecto', icon: FolderPlus },
   { name: 'Registro Competencias y RA', icon: ClipboardList },
   { name: 'Crear Ficha', icon: File },
