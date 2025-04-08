@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HelpController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,10 +20,31 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/help', [HelpController::class, 'index'])->name('help.index')->middleware(['auth', 'verified']);
+//Route::get('/help/create', [HelpController::class, 'create'])->name('help.create')->middleware(['auth', 'verified']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/program/create', function () {
+        return Inertia::render('Program/CreateProgram');
+    })->name('program.create');
+
+    Route::get('/project/create', function () {
+        return Inertia::render('Program/CreateProject');
+    })->name('project.create');
+
+    Route::get('/competencies/register', function () {
+        return Inertia::render('Program/RegisterCompetencesRa');
+    })->name('competencies.register');
+
+    Route::get('/file/create', function () {
+        return Inertia::render('Program/CreateFile');
+    })->name('file.create');
 });
 
 require __DIR__.'/auth.php';
