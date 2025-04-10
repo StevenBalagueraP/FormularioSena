@@ -6,6 +6,7 @@ use App\Http\Controllers\HelpController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\CompetenciaController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -15,6 +16,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/competencias', [CompetenciaController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -11,11 +11,9 @@
       </div>
       <div class="flex flex-col items-center mb-4">
         <h2 class="text-lg font-semibold text-gray-700">Bienvenido, usuario:</h2>
-          <!-- Nombre y Apellido del Usuario -->
-      <span class="text-gray text-lg font-bold">{{$page.props.auth.user.nombre}}</span>
-          <span class="text-gray text-lg font-bold">{{$page.props.auth.user.apellido}}</span>
-       
-      
+         Nombre y Apellido del Usuario
+           <span class="text-gray text-lg font-bold">{{$page.props.auth.user.nombre}}</span>
+          <span class="text-gray text-lg font-bold">{{$page.props.auth.user.apellido}}</span> 
 
       </div>
 

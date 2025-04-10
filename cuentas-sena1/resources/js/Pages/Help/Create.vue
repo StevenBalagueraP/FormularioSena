@@ -6,8 +6,6 @@
     </div>
     <Teleport to="body">
 
-   
-    <!-- <Modal :show="show" max-width="4xl" @close="close"> -->
     <div>
    
         <TextInput  
@@ -30,9 +28,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';  
 import TextInput from '@/Components/TextInput.vue';
-import InputError from '@/Components/InputError.vue';
-import Modal from 'vendor/laravel/breeze/stubs/inertia-react/resources/js/Components/Modal';
-import Modal from '@/Components/Modal.vue';
+import InputError from '@/Components/InputError.vue';      
 
 
 const form = useForm({
