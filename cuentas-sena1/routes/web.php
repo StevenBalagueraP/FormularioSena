@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\CargarmasivoController;
 
 use Illuminate\Foundation\Application;

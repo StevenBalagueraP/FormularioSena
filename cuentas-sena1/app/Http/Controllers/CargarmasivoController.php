@@ -10,6 +10,6 @@ class CargarmasivoController extends Controller
 {
     public function index ()
     {
-        return Inertia::render('CargarMasivo'); 
+        return Inertia::render('CargaMasivo/CargarMasivo'); 
     }
 }
