@@ -272,26 +272,33 @@ input {
 .uniform-table {
   table-layout: fixed;
   width: 100%;
-  height: 100%;
   border-collapse: collapse;
-  min-width: 1200px; /* Ancho mínimo para asegurar que todos los datos sean visibles */
+  min-width: 1200px; /* Ensures the table has a minimum width */
+  background-color: #f5f5f5; /* Light gray background for the table */
 }
 
-.uniform-table th {
-  background-color: #f4f4f4f3;
-  font-weight: bold;
-  padding: 12px 8px;
-  /* Aumentamos el padding vertical */
+.uniform-table th,
+.uniform-table td {
+  border: 2px solid #c6c6c6; /* Thicker gray border for columns */
+  padding: 8px;
+  font-size: 14px;
   white-space: normal;
-  /* Permitimos que el texto se envuelva */
   word-wrap: break-word;
-  /* Forzamos el quiebre de palabras largas */
-  min-width: 100px;
-  /* Ancho mínimo para las columnas */
-  vertical-align: top;
-  /* Alineamos el contenido arriba */
-  line-height: 1.2;
-  /* Ajustamos el espaciado entre líneas */
+  vertical-align: middle;
+  width: 150px; /* Column width */
+  text-align: center; /* Centers the content of the columns */
+}
+
+.uniform-table th:last-child,
+.uniform-table td:last-child {
+  width: 280px !important; /* Explicitly set a larger width for the "Action" column */
+  max-width: 400px; /* Ensure the column does not shrink below this width */
+}
+
+.uniform-table td:last-child .flex {
+  flex-wrap: nowrap; /* Prevents buttons from wrapping to the next line */
+  justify-content: center; /* Centers the buttons horizontally */
+  gap: 10px; /* Adds spacing between the buttons */
 }
 
 .uniform-table td {

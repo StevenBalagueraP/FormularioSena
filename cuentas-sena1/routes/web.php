@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Rutas del programa (christof)
+    // Routes of (christof)
     Route::get('/program/create', [ProgramController::class, 'create'])->name('program.create');
     Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
     Route::put('/program/{program}', [ProgramController::class, 'update'])->name('program.update');
