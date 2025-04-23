@@ -11,7 +11,7 @@
     <div>
    
         <TextInput  
-            id="nombre" 
+            id="nombre"  
             type="text" 
             class="mt-1 block w-full" 
             placeholder="Nombre" 

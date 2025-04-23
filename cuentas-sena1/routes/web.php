@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
+use App\Http\Controllers\ProgramController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,24 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/program/create', function () {
-        return Inertia::render('Program/CreateProgram');
-    })->name('program.create');
-
-    Route::get('/project/create', function () {
-        return Inertia::render('Program/CreateProject');
-    })->name('project.create');
-
-    Route::get('/competencies/register', function () {
-        return Inertia::render('Program/RegisterCompetencesRa');
-    })->name('competencies.register');
-
-    Route::get('/file/create', function () {
-        return Inertia::render('Program/CreateFile');
-    })->name('file.create');
+    
+    // Routes of (christof)
+    Route::get('/program/create', [ProgramController::class, 'create'])->name('program.create');
+    Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
+    Route::put('/program/{program}', [ProgramController::class, 'update'])->name('program.update');
+    Route::delete('/program/{program}', [ProgramController::class, 'destroy'])->name('program.destroy');
 });
 
 require __DIR__.'/auth.php';
