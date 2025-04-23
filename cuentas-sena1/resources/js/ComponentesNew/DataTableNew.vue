@@ -80,6 +80,12 @@
           <!-- Botones de acción -->
           <td class="py-2 px-4 border-b min-w-[200px] align-middle">
             <div class="flex flex-wrap justify-center gap-2">
+              <!-- Add Checkbox -->
+              <Checkbox 
+                :checked="rowData.checked" 
+                @update:checked="(val) => rowData.checked = val" 
+              />
+              <!-- Edit Button -->
               <button 
                   @click="customcomponent.actions.edit(rowData)"
                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded inline-flex items-center text-sm whitespace-nowrap"
@@ -109,6 +115,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { defineProps, defineEmits } from 'vue';
+import Checkbox from "@/Components/Checkbox.vue"; // Import Checkbox component
 
 // Definición de propiedades del componente
 const props = defineProps({

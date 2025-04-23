@@ -117,8 +117,33 @@
       <div class="bg-white rounded-lg shadow p-4 overflow-hidden">
         <div class="mt-4 w-full overflow-x-auto">
           <div class="min-w-full max-w-full md:w-full lg:w-full">
-            <DataTableNew :data="tableData" :columns="columns" :customcomponent="customComponent"
-              class="text-xs md:text-sm w-full table-auto" />
+            <DataTableNew 
+              :data="tableData" 
+              :columns="columns" 
+              :customcomponent="customComponent"
+              class="text-xs md:text-sm w-full table-auto"
+            >
+              <template #action="{ rowData }">
+                <div class="flex items-center gap-2">
+                  <Checkbox 
+                    :checked="rowData.checked" 
+                    @update:checked="(val) => rowData.checked = val" 
+                  />
+                  <button 
+                    @click="customComponent.actions.edit(rowData)"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded inline-flex items-center text-sm whitespace-nowrap"
+                  >
+                    Editar
+                  </button>
+                  <button 
+                    @click="customComponent.actions.delete(rowData)"
+                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded inline-flex items-center text-sm whitespace-nowrap"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </template>
+            </DataTableNew>
           </div>
         </div>
       </div>
@@ -132,6 +157,7 @@ import { router, usePage } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import DataTableNew from '@/ComponentesNew/DataTableNew.vue';
 import Dashboard from '@/Pages/Dashboard.vue'; // Import Dashboard
+import Checkbox from '@/Components/Checkbox.vue'; // Import Checkbox component
 
 const page = usePage();
 const showModal = ref(false);
