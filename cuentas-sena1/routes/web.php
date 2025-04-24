@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\CargarmasivoController;
+use App\Http\Controllers\CrearcuentaController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,11 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function() { 
     Route::get('/cargarmasivo', [CargarmasivoController::class, 'index']);
+
+});
+
+Route::middleware('auth')->group(function() { 
+    Route::get('/crearcuenta', [CrearcuentaController::class, 'index']);
 
 });
 

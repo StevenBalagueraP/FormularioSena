@@ -1,12 +1,12 @@
 <template>
-    <div class=" flex relative max-xl mx-auto justify-center my-10">
+    <div class="relative flex justify-center mx-auto my-10 max-xl">
       <!-- Input de búsqueda -->
       <div class="relative w-full">
         <input v-model="searchQuery" type="text" placeholder="Search"
-          class="w-full py-3 px-4 border border-gray-300 rounded-md shadow-sm pr-12 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+          class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         <!-- Botón con ícono de lupa -->
-        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 hover:text-gray-900">
-          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <button class="absolute text-gray-700 transform -translate-y-1/2 right-3 top-1/2 hover:text-gray-900">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M14.795 13.408l5.204 5.204a1 1 0 01-1.414 1.414l-5.204-5.204a7.5 7.5 0 111.414-1.414zM8.5 14A5.5 5.5 0 103 8.5 5.506 5.506 0 008.5 14z" />
           </svg>
@@ -15,25 +15,25 @@
     </div>
 
     <!-- Filtros por fechas -->
-    <div class="flex justify-center space-x-4 my-4">
+    <div class="flex justify-center my-4 space-x-4">
 
       <label for="start-date" class="mr-2">Start Date:</label>
-      <input v-model="startDate" type="date" id="start-date" class="py-2 px-4 border border-gray-300 rounded-md" />
+      <input v-model="startDate" type="date" id="start-date" class="px-4 py-2 border border-gray-300 rounded-md" />
 
       <label for="end-date" class="ml-4 mr-2">End Date:</label>
-      <input v-model="endDate" type="date" id="end-date" class="py-2 px-4 border border-gray-300 rounded-md" />
+      <input v-model="endDate" type="date" id="end-date" class="px-4 py-2 border border-gray-300 rounded-md" />
 
 
     </div>
 
 
     <!--Tabla 
-    <div class="relative flex max-w-auto mx-auto justify-center">-->
-    <div class="overflow-x-auto w-full">
-      <table class="table-fixed uniform-table w-full h-full">
+    <div class="relative flex justify-center mx-auto max-w-auto">-->
+    <div class="w-full overflow-x-auto">
+      <table class="w-full h-full table-fixed uniform-table">
         <thead>
           <tr class="h-full">
-            <th class="fa fa-angle-double-down text-center" v-for="column in columns"
+            <th class="text-center fa fa-angle-double-down" v-for="column in columns"
               @click="orderByColumn(column.datacol, column.datasubcol)">{{ column.alias }}
               <template v-if="sortedColumn == column.datacol">
                 <svg v-if="sortOrder" class="inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -55,9 +55,9 @@
                 <td>
                   <template v-if="rowData.editing">
                     <input v-if="column.datasubcol" v-model="rowData[column.datacol][column.datasubcol]" type="text"
-                      class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm" />
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm" />
                     <input v-else v-model="rowData[column.datacol]" type="text"
-                      class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm" />
+                      class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm" />
                     Debería correr el proyecto
                   </template>
                   <template v-else>
@@ -69,8 +69,8 @@
               </template>
               <template v-else>
                 <td :class="column.class">
-                  <ul class="list-none flex space-x-1">
-                    <li v-for="row in rowData[column.datacol]" class="bg-red-500 text-white p-2">{{
+                  <ul class="flex space-x-1 list-none">
+                    <li v-for="row in rowData[column.datacol]" class="p-2 text-white bg-red-500">{{
                       row[column.datasubcol]
                       }}</li>
                   </ul>
@@ -78,11 +78,11 @@
               </template>
             </template>
             <!-- Botón de Editar fila -->
-            <td class="py-2 px-4 border-b h-full flex items-center justify-center  space-x-2">
+            <td class="flex items-center justify-center h-full px-4 py-2 space-x-2 border-b">
               
                 <!-- Tooltip que aparece al pasar el mouse sobre el icono -->
                 <span
-                  class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-Black rounded opacity-0 group-hover:opacity-100 transition">
+                  class="absolute px-2 py-1 mb-2 text-xs transition -translate-x-1/2 rounded opacity-0 left-1/2 bottom-full text-Black group-hover:opacity-100">
                   Delete row
                 </span>
               <!--</div>-->
