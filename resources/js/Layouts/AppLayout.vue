@@ -1,4 +1,5 @@
 <template>
+    <ApplicationLogo></ApplicationLogo>
     <v-app :theme="darkMode ? 'dark' : 'light'">
       <v-app-bar app color="primary" dark>
         <v-toolbar-title>Reporte General</v-toolbar-title>
