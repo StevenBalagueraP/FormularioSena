@@ -1,3 +1,3 @@
 <template>
-     <img src="/img/logo-sena.jpg" alt="Logo SENA">
+     <img src="/public/img/logo-sena.png" alt="Logo SENA">
 </template>
