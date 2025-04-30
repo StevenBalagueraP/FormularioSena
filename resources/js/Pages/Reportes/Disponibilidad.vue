@@ -1,12 +1,14 @@
 <template>
-  <div :class="{ 'dark bg-gray-900 text-white': isDarkMode }" class="p-4 min-h-screen transition-colors">
+  <div :class="[{ 'dark bg-gray-900 text-white': isDarkMode }, 'p-4 min-h-screen transition-colors']">
     <div class="flex justify-between items-center mb-4">
       <h2 class="text-lg font-semibold">Disponibilidad de Instructores</h2>
       <button @click="toggleDarkMode" class="px-4 py-2 border rounded-lg shadow">
         {{ isDarkMode ? 'Modo Claro' : 'Modo Oscuro' }}
       </button>
     </div>
-
+    <div v-log-attrs>
+  <!-- contenido -->
+</div>
     <FullCalendar
       :options="calendarOptions"
       class="border rounded shadow bg-white dark:bg-gray-800 dark:text-white"
@@ -14,18 +16,21 @@
   </div>
 </template>
 
+
 <script>
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import Vista from '../../Layouts/Vista.vue';
+import AppLayout from '@/Layouts/AppLayout.vue'
+
 
 export default {
+  name: 'reportes.disponibilidad',
+  layout: AppLayout,
   components: { FullCalendar },
   data() {
     return {
-      layout: Vista,
       isDarkMode: localStorage.getItem("darkMode") === "true",
       calendarOptions: {
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
